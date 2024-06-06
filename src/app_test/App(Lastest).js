@@ -6,8 +6,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Detail from "./routes/Detail";
-import Home from "./routes/Home";
+import Detail from "../routes/Detail";
+import Home from "../routes/Home";
 
 function App() {
   const router = createBrowserRouter([

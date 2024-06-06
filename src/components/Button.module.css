@@ -1,0 +1,20 @@
+.btn {
+    color: white;
+    background-color: skyblue;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: deepskyblue;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    background-color: dodgerblue;
+    transform: translateY(0);
+}
