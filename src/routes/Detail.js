@@ -1,32 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "chartjs-plugin-zoom";
 import styles from '../components/Home.module.css';
-import { createGlobalState } from 'react-hooks-global-state';
-
-// 전역 상태 생성
-const { useGlobalState } = createGlobalState({ count: 0, stringtest: "test", booltest: false });
-
-// CountDisplay 컴포넌트
-const CountDisplay = () => {
-    const [count] = useGlobalState('count');
-    const [booltest] = useGlobalState('booltest');
-    
-    if (!booltest) {
-        return null;
-    }
-
-    return (
-        <div>
-            <p>Count: {count}</p>
-            <IncrementButton />
-        </div>
-    );
-};
 
 // ToggleButton 컴포넌트
-const ToggleButton = () => {
-    const [booltest, setBooltest] = useGlobalState('booltest');
-
+const ToggleButton = ({ booltest, setBooltest }) => {
     return (
         <button onClick={() => setBooltest(!booltest)}>
             {booltest ? 'Hide' : 'Show'}
@@ -35,11 +12,9 @@ const ToggleButton = () => {
 };
 
 // IncrementButton 컴포넌트
-const IncrementButton = () => {
-    const [count, setCount] = useGlobalState('count');
-
+const IncrementButton = ({ setCount }) => {
     return (
-        <button onClick={() => setCount(count + 1)}>
+        <button onClick={() => setCount(prevCount => prevCount + 1)}>
             Increment
         </button>
     );
@@ -47,14 +22,67 @@ const IncrementButton = () => {
 
 // Detail 컴포넌트
 function Detail() {
+    const [count, setCount] = useState(0);
+    // const [stringtest, setStringtest] = useState("test");
+    const [booltest, setBooltest] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('option1');
+
+    // useEffect 훅을 사용하여 selectedOption 값이 변경될 때마다 로그 출력
+    useEffect(() => {
+        console.log(selectedOption);
+    }, [selectedOption]);
+
     return (
         <div>
-            <ToggleButton />
-            <CountDisplay />
-            <div className={styles.title}>
-                Budget Growth Visualization
-            </div>
-            {/* 필요한 다른 컴포넌트나 JSX 요소를 추가 */}
+            {/* 토글 버튼: booltest 상태를 토글 */}
+            <ToggleButton booltest={booltest} setBooltest={setBooltest} />
+
+            {/* 카운트 표시 및 증가 버튼 */}
+            {booltest && (
+                <div>
+                    <p>Count: {count}</p>
+                    <IncrementButton setCount={setCount} />
+
+                    <div>
+                    <label htmlFor="options">Choose an option:</label>
+                    <select
+                        id="options"
+                        value={selectedOption}
+                        onChange={(e) => setSelectedOption(e.target.value)}
+                    >
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                    <p>Selected Option: {selectedOption}</p>
+                    </div>
+
+                    <div className={styles.title}>
+                        Spinex Test
+                    </div>
+                </div>
+            )}
+
+            {/* 드롭다운 메뉴 (select 요소) */}
+            {/* <div>
+                <label htmlFor="options">Choose an option:</label>
+                <select
+                    id="options"
+                    value={selectedOption}
+                    onChange={(e) => setSelectedOption(e.target.value)}
+                >
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+                <p>Selected Option: {selectedOption}</p>
+            </div> */}
+
+            {/* 페이지 제목 */}
+            {/* <div className={styles.title}>
+                Spinex Test
+            </div> */}
+
         </div>
     );
 }

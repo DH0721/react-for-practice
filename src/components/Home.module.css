@@ -56,6 +56,7 @@
 .multipleContainer {
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .table {
@@ -75,8 +76,8 @@
     align-items: center;
     margin: 0 auto;
     width: 80%; /* 폼의 너비를 50%로 설정 */
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
     padding: 20px;
     border-radius: 8px;
-    height: 50vh;
+    height: 65vh;
 }
