@@ -1,0 +1,6 @@
+■install
+npm insatll -g serve
+
+■prompt
+npm run build
+npx serve -s build // once execute
