@@ -8,11 +8,13 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
 }
 
 .formGroup {
     margin-bottom: 15px;
     width: 98%; /* 폼 그룹의 너비를 100%로 설정 */
+    
 }
 
 .formGroup label {

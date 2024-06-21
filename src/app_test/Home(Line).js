@@ -30,12 +30,8 @@ class Home extends React.Component {
         };
     }
 
-    // 숫자여야 하는 값들(initialBudget, annualAddition, years)은 숫자로 변환하여 저장하고, 그 외의 값은 그대로 저장
     handleChange = (e) => {
-        const { name, value } = e.target;
-        this.setState({ 
-            [name]: name === "initialBudget" || name === "annualAddition" || name === "years" ? parseFloat(value) : value 
-        });
+        this.setState({ [e.target.name]: e.target.value });
     };
 
     handleSubmit = (e) => {
@@ -64,6 +60,7 @@ class Home extends React.Component {
 
                 if (i > 0) {
                     for (let j = 0; j < i; j++) {
+                        budget = parseFloat(budget);  // budget이 숫자인지 확인
                         budget *= calPercent;
                         budget += annualAddition;
                     }
